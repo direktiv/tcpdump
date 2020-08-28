@@ -63,31 +63,43 @@ func (pCM *PacketCaptureManager) SetFilter(bpfFilter string) error {
 	return nil
 }
 
-// StartCapturing starts the capturing process
-func (pCM *PacketCaptureManager) StartCapturing() error {
+func (pCM *PacketCaptureManager) prepCapturing() (*pcap.Handle, error) {
+
 	if pCM.targetDevice == "" {
-		return fmt.Errorf("no target devices set, please add a device before capturing")
+		return nil, fmt.Errorf("no target devices set, please add a device before capturing")
 	}
 
 	if err := pCM.isCapturing(); err != nil {
-		return err
+		return nil, err
 	}
 
 	// Open device
 	CaptureLogInfo("Opening Device \"%s\" for Packet Capturing\n", pCM.targetDevice)
 	tcpdumpHandler, err := pcap.OpenLive(pCM.targetDevice, pCM.snapshotLen, pCM.promiscuousMode, pCM.timeout)
 	if err != nil {
-		return fmt.Errorf("could not open device \"%s\", error=%v", pCM.targetDevice, err)
+		return nil, fmt.Errorf("could not open device \"%s\", error=%v", pCM.targetDevice, err)
 	}
 
 	// Set Filter
 	CaptureLogInfo("Setting Device \"%s\" Packet Capturing BPF Filter to \"%s\"\n", pCM.targetDevice, pCM.bpfFilter)
 	err = tcpdumpHandler.SetBPFFilter(pCM.bpfFilter)
 	if err != nil {
-		return fmt.Errorf("could not open bpf filter \"%s\" on device \"%s\", error=%v", pCM.bpfFilter, pCM.targetDevice, err)
+		return nil, fmt.Errorf("could not open bpf filter \"%s\" on device \"%s\", error=%v", pCM.bpfFilter, pCM.targetDevice, err)
 	}
 
 	pCM.capturing = true
+
+	return tcpdumpHandler, nil
+
+}
+
+// StartCapturing starts the capturing process
+func (pCM *PacketCaptureManager) StartCapturing() error {
+
+	tcpdumpHandler, err := pCM.prepCapturing()
+	if err != nil {
+		return err
+	}
 
 	// Use the handle as a packet source to process all packets
 	packetSource := gopacket.NewPacketSource(tcpdumpHandler, tcpdumpHandler.LinkType())

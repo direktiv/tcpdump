@@ -6,10 +6,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSetDevice(t *testing.T) {
+var (
+	name   = "lo"
+	filter = "tcp"
+)
 
-	name := "lo"
-	filter := "tcp"
+func TestBasicFunction(t *testing.T) {
 
 	m := NewPacketCaptureManager(512, DefaultPromiscuousMode, DefaultTimeout)
 
@@ -23,6 +25,28 @@ func TestSetDevice(t *testing.T) {
 	m.SetFilter(filter)
 	assert.Equal(t, m.bpfFilter, filter, "filter not equal")
 
-	m.StartCapturing()
+}
+
+func TestConfigErrors(t *testing.T) {
+
+	m := NewPacketCaptureManager(DefaultSnapshotLen, DefaultPromiscuousMode, DefaultTimeout)
+	m.capturing = true
+
+	err := m.SetDevice(name)
+	assert.Error(t, err)
+
+	m.SetFilter(filter)
+	assert.Error(t, err)
+
+	m.capturing = false
+
+	err = m.SetDevice(name)
+	assert.NoError(t, err)
+
+	m.SetFilter(filter)
+	assert.NoError(t, err)
+
+	_, err = m.prepCapturing()
+	assert.NoError(t, err)
 
 }
