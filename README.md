@@ -4,7 +4,7 @@ tcpdump is a simple tcp packet logging tool for [vorteil.io](http://www.vorteil.
 
 To enable tcpdump on a [vorteil.io](http://www.vorteil.io) micro vm it needs to be enabled in the network configuration:
 
-```
+```toml
 [[network]]
   tcpdump = true
 ```
@@ -12,7 +12,7 @@ To enable tcpdump on a [vorteil.io](http://www.vorteil.io) micro vm it needs to 
 This captures traffic on the network device and prints the results to stdout:
 
 
-```
+```sh
 PACKET: 150 bytes, wire length 150 cap length 150 @ 2020-08-28 12:52:12.164536 +1000 AEST
 - Layer 1 (14 bytes) = Ethernet	{Contents=[..14..] Payload=[..136..] SrcMAC=2c:4d:54:56:38:a0 DstMAC=bc:30:d9:a7:58:65 EthernetType=IPv6 Length=0}
 - Layer 2 (40 bytes) = IPv6	{Contents=[..40..] Payload=[..96..] Version=6 TrafficClass=0 FlowLabel=139359 Length=96 NextHeader=TCP HopLimit=64 SrcIP=2001:8003:749f:9f01:d92e:44e2:2691:4d7b DstIP=2404:6800:4006:805::200a HopByHop=nil}

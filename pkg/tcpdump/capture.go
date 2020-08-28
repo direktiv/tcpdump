@@ -14,12 +14,10 @@ import (
 	"github.com/google/gopacket/pcap"
 )
 
-var (
-	// CaptureLogInfo default print function
-	CaptureLogInfo func(string, ...interface{}) = func(s string, i ...interface{}) {
-		os.Stdout.WriteString(fmt.Sprintf(s, i...))
-	}
-)
+// CaptureLogInfo default print function
+func CaptureLogInfo(s string, i ...interface{}) {
+	os.Stdout.WriteString(fmt.Sprintf(s, i...))
+}
 
 // PacketCaptureManager struct
 type PacketCaptureManager struct {
