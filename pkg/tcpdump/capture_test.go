@@ -46,7 +46,8 @@ func TestConfigErrors(t *testing.T) {
 	m.SetFilter(filter)
 	assert.NoError(t, err)
 
+	// we are not root or have capabilities to capture
 	_, err = m.prepCapturing()
-	assert.NoError(t, err)
+	assert.Error(t, err)
 
 }
