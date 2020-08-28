@@ -4,11 +4,10 @@ language: go
 
 go:
   - 1.15
-  - release
-  - tip
 
 before_install:
   - go get -t -v ./...
+  - sudo apt-get -y install libpcap-dev
 
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
