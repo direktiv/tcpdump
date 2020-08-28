@@ -8,8 +8,7 @@ go:
 before_install:
   - sudo apt-get -y install libpcap-dev
   - go get -t -v ./...
-  - ip link show
-
+  
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
