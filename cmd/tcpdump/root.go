@@ -13,10 +13,8 @@ import (
 	"github.com/vorteil/tcpdump/pkg/tcpdump"
 )
 
-var cfgFile string
-var targetDeviceName string
+var cfgFile, targetDeviceName string
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "tcpdump",
 	Short: "A tcpdump Clone",
@@ -28,7 +26,7 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		newCaptureManager := tcpdump.NewPacketCapture(tcpdump.DefaultSnapshotLen, tcpdump.DefaultPromiscuousMode, tcpdump.DefaultTimeout)
+		newCaptureManager := tcpdump.NewPacketCaptureManager(tcpdump.DefaultSnapshotLen, tcpdump.DefaultPromiscuousMode, tcpdump.DefaultTimeout)
 		if err := newCaptureManager.SetDevice(targetDeviceName); err != nil {
 			os.Stderr.WriteString(fmt.Sprintf("Could not set target interface to device named \"%s\", error=%v\n", targetDeviceName, err))
 			os.Exit(1)

@@ -7,6 +7,7 @@ package tcpdump
 
 import "time"
 
+// Default settings for tcpdump
 const (
 	DefaultSnapshotLen     = 1024
 	DefaultPromiscuousMode = false

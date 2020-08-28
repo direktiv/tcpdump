@@ -15,12 +15,14 @@ import (
 )
 
 var (
+	// CaptureLogInfo default print function
 	CaptureLogInfo func(string, ...interface{}) = func(s string, i ...interface{}) {
 		os.Stdout.WriteString(fmt.Sprintf(s, i...))
 	}
 )
 
-type packetCaptureManager struct {
+// PacketCaptureManager struct
+type PacketCaptureManager struct {
 	targetDevice    string
 	capturing       bool
 	snapshotLen     int32
@@ -29,8 +31,9 @@ type packetCaptureManager struct {
 	timeout         time.Duration
 }
 
-func NewPacketCapture(snapshotLen int32, promiscuousMode bool, timeout time.Duration) *packetCaptureManager {
-	return &packetCaptureManager{
+// NewPacketCaptureManager creates a new packet manager
+func NewPacketCaptureManager(snapshotLen int32, promiscuousMode bool, timeout time.Duration) *PacketCaptureManager {
+	return &PacketCaptureManager{
 		capturing:       false,
 		snapshotLen:     snapshotLen,
 		bpfFilter:       "",
@@ -40,7 +43,8 @@ func NewPacketCapture(snapshotLen int32, promiscuousMode bool, timeout time.Dura
 	}
 }
 
-func (pCM *packetCaptureManager) SetDevice(deviceName string) error {
+// SetDevice sets the device to be captured, e.g. eth0
+func (pCM *PacketCaptureManager) SetDevice(deviceName string) error {
 	if err := pCM.isCapturing(); err != nil {
 		return err
 	}
@@ -50,7 +54,8 @@ func (pCM *packetCaptureManager) SetDevice(deviceName string) error {
 	return nil
 }
 
-func (pCM *packetCaptureManager) SetFilter(bpfFilter string) error {
+// SetFilter sets the packet filter. Default is DefaultBPFFilter ("tcp or udp")
+func (pCM *PacketCaptureManager) SetFilter(bpfFilter string) error {
 	if err := pCM.isCapturing(); err != nil {
 		return err
 	}
@@ -60,7 +65,8 @@ func (pCM *packetCaptureManager) SetFilter(bpfFilter string) error {
 	return nil
 }
 
-func (pCM *packetCaptureManager) StartCapturing() error {
+// StartCapturing starts the capturing process
+func (pCM *PacketCaptureManager) StartCapturing() error {
 	if pCM.targetDevice == "" {
 		return fmt.Errorf("no target devices set, please add a device before capturing")
 	}
@@ -95,7 +101,7 @@ func (pCM *packetCaptureManager) StartCapturing() error {
 	return nil
 }
 
-func (pCM *packetCaptureManager) isCapturing() error {
+func (pCM *PacketCaptureManager) isCapturing() error {
 	if pCM.capturing {
 		return fmt.Errorf("cannot edit/start capture manager, already capturing packets")
 	}
