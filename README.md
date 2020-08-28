@@ -1,6 +1,6 @@
 # tcpdump
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cfea20057d8740899fa1ef66a90dfe7e)](https://app.codacy.com/gh/vorteil/tcpdump?utm_source=github.com&utm_medium=referral&utm_content=vorteil/tcpdump&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cfea20057d8740899fa1ef66a90dfe7e)](https://app.codacy.com/gh/vorteil/tcpdump?utm_source=github.com&utm_medium=referral&utm_content=vorteil/tcpdump&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.org/vorteil/tcpdump.svg?branch=master)](https://travis-ci.org/vorteil/tcpdump) [![codecov](https://codecov.io/gh/vorteil/tcpdump/branch/master/graph/badge.svg)](https://codecov.io/gh/vorteil/tcpdump)
 
 tcpdump is a simple tcp packet logging tool for [vorteil.io](http://www.vorteil.io).
 
