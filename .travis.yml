@@ -6,8 +6,8 @@ go:
   - 1.15
 
 before_install:
-  - go get -t -v ./...
   - sudo apt-get -y install libpcap-dev
+  - go get -t -v ./...
 
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
