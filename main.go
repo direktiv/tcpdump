@@ -5,7 +5,7 @@
 
 package main
 
-import "code.vorteil.io/vorteil/os/tcpdump/cmd"
+import "github.com/vorteil/tcpdump/cmd/tcpdump"
 
 func main() {
 	cmd.Execute()
