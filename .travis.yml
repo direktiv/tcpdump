@@ -7,10 +7,14 @@ go:
 
 before_install:
   - sudo apt-get -y install libpcap-dev
+  - sudo apt install npm
+  - npm install -g snyk
+  - snyk test
   - go get -t -v ./...
-  
+
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - snyk monitor
