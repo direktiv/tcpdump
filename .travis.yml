@@ -8,7 +8,6 @@ go:
 before_install:
   - sudo apt-get -y install libpcap-dev
   - npm install -g snyk
-  - snyk auth
   - snyk test
   - go get -t -v ./...
 
