@@ -7,7 +7,6 @@ go:
 
 before_install:
   - sudo apt-get -y install libpcap-dev
-  - sudo apt install npm
   - npm install -g snyk
   - snyk auth
   - snyk test
