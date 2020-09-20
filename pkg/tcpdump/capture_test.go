@@ -11,6 +11,21 @@ var (
 	filter = "tcp"
 )
 
+func TestPrepCapturing(t *testing.T) {
+
+	m := NewPacketCaptureManager(512, DefaultPromiscuousMode, DefaultTimeout)
+	m.targetDevice = ""
+
+	_, err := m.prepCapturing()
+	assert.Error(t, err)
+
+	m.targetDevice = "123"
+	m.capturing = true
+	_, err = m.prepCapturing()
+	assert.Error(t, err)
+
+}
+
 func TestBasicFunction(t *testing.T) {
 
 	m := NewPacketCaptureManager(512, DefaultPromiscuousMode, DefaultTimeout)

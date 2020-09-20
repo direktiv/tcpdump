@@ -1,6 +1,8 @@
 # tcpdump
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cfea20057d8740899fa1ef66a90dfe7e)](https://app.codacy.com/gh/vorteil/tcpdump?utm_source=github.com&utm_medium=referral&utm_content=vorteil/tcpdump&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.org/vorteil/tcpdump.svg?branch=master)](https://travis-ci.org/vorteil/tcpdump) [![codecov](https://codecov.io/gh/vorteil/tcpdump/branch/master/graph/badge.svg)](https://codecov.io/gh/vorteil/tcpdump)
+[![Build Status](https://travis-ci.org/vorteil/tcpdump.svg?branch=master)](https://travis-ci.org/vorteil/tcpdump) <a href="https://codeclimate.com/github/vorteil/tcpdump/maintainability"><img src="https://api.codeclimate.com/v1/badges/e52fd09c8f78d093231f/maintainability" /></a> <a href="https://codeclimate.com/github/vorteil/tcpdump/test_coverage"><img src="https://api.codeclimate.com/v1/badges/e52fd09c8f78d093231f/test_coverage" /></a> [![Go Report Card](https://goreportcard.com/badge/github.com/vorteil/tcpdump)](https://goreportcard.com/report/github.com/vorteil/tcpdump)
+<!--
+[![Build Status](https://travis-ci.org/vorteil/tcpdump.svg?branch=master)](https://travis-ci.org/vorteil/tcpdump) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cfea20057d8740899fa1ef66a90dfe7e)](https://app.codacy.com/gh/vorteil/tcpdump?utm_source=github.com&utm_medium=referral&utm_content=vorteil/tcpdump&utm_campaign=Badge_Grade_Dashboard) [![codecov](https://codecov.io/gh/vorteil/tcpdump/branch/master/graph/badge.svg)](https://codecov.io/gh/vorteil/tcpdump) [![Go Report Card](https://goreportcard.com/badge/github.com/vorteil/tcpdump)](https://goreportcard.com/report/github.com/vorteil/tcpdump) -->
 
 tcpdump is a simple tcp packet logging tool for [vorteil.io](http://www.vorteil.io).
 
