@@ -7,13 +7,15 @@ go:
 
 before_install:
   - sudo apt-get -y install libpcap-dev
-  - npm install -g snyk
-  - snyk test
   - go get -t -v ./...
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
-  - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+  - go test -coverprofile c.out ./...
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - snyk monitor
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
